@@ -21,23 +21,17 @@ public class Similarity {
         String a = normalize(item);
         String b = normalize(similar);
 
-        // add a -> b
         similarityMap.putIfAbsent(a, new ArrayList<>());
         if (!similarityMap.get(a).contains(similar)) {
             similarityMap.get(a).add(similar);
         }
 
-        // add b -> a (bi-directional)
         similarityMap.putIfAbsent(b, new ArrayList<>());
         if (!similarityMap.get(b).contains(item)) {
             similarityMap.get(b).add(item);
         }
     }
 
-    /**
-     * Returns similar items for the given item. If none found, returns an empty list.
-     * The returned list contains no duplicates and preserves insertion order.
-     */
     public ArrayList<String> getSimilarItems(String item) {
         if (item == null) return new ArrayList<>();
 
@@ -52,4 +46,5 @@ public class Similarity {
     private String normalize(String s) {
         return s.trim();
     }
+
 }
